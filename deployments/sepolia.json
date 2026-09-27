@@ -3,8 +3,10 @@
   "network": "sepolia",
   "deployedAt": "2026-09-27",
   "PunkPairTrading": "0x709B21ecD161DbF745D8721aD3192E843605eb67",
-  "owner": "0x67B1eBaF847BE5050272b174be2713D81b08dCF4",
+  "owner": "0x8274300284fb270E0D151a0Ed02f70303819dAF1",
+  "ownerIs": "Gnosis Safe 1.4.1 (1-of-1 rehearsal Safe, signer 0x67B1eBaF847BE5050272b174be2713D81b08dCF4) — handed over in two steps by script/SafeRehearsal.s.sol, which also paused and unpaused from the Safe",
   "pendingOwner": null,
+  "etherscan": "verified (PunkPairTrading and the mock wrapped-punks marketplace)",
   "superseded": {
     "0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c": "first deployment, before the switch to two-step ownership (Ownable2Step); unused"
   },

@@ -105,7 +105,7 @@ deployed alongside.
 
 | Network | PunkPairTrading | Notes |
 | --- | --- | --- |
-| Sepolia | [`0x709B21ecD161DbF745D8721aD3192E843605eb67`](https://sepolia.etherscan.io/address/0x709B21ecD161DbF745D8721aD3192E843605eb67) | against mocks of the original contracts (the V1 mock reproduces the proceeds bug) — see [`deployments/sepolia.json`](deployments/sepolia.json) |
+| Sepolia | [`0x709B21ecD161DbF745D8721aD3192E843605eb67`](https://sepolia.etherscan.io/address/0x709B21ecD161DbF745D8721aD3192E843605eb67) (verified) | against mocks of the original contracts (the V1 mock reproduces the proceeds bug); owned by a rehearsal Safe [`0x8274…dAF1`](https://sepolia.etherscan.io/address/0x8274300284fb270E0D151a0Ed02f70303819dAF1) after a two-step handover run by `script/SafeRehearsal.s.sol` — see [`deployments/sepolia.json`](deployments/sepolia.json) |
 | Mainnet | — | not before the review |
 
 ## Review focus

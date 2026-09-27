@@ -99,6 +99,13 @@ deployed alongside.
 | Wrapped-punks marketplace (FrankPoncelet) | `0x759c6C1923910930C18ef490B3c3DbeFf24003cE` |
 | CryptoPunks V2 (`CryptoPunksMarket`) | `0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB` |
 
+## Deployments
+
+| Network | PunkPairTrading | Notes |
+| --- | --- | --- |
+| Sepolia | [`0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c`](https://sepolia.etherscan.io/address/0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c) | against mocks of the original contracts (the V1 mock reproduces the proceeds bug) — see [`deployments/sepolia.json`](deployments/sepolia.json) |
+| Mainnet | — | not before the review |
+
 ## Review focus
 
 Things we would like a second pair of eyes on:

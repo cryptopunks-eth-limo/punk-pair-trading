@@ -17,6 +17,7 @@ import {MockWrappedPunksMarketplace} from "../test/mocks/MockWrappedPunksMarketp
  *                               Unset on a test chain: a MockWrappedPunksMarketplace is deployed and used.
  *   PUNKS_V2                    CryptoPunksMarket (mainnet 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB)
  *   OWNER                       the pause switch holder (defaults to the deployer)
+ *   PRIVATE_KEY                 optional deployer key; otherwise pass --private-key / --ledger / --account
  *
  * Usage:
  *   forge script script/Deploy.s.sol --rpc-url sepolia --broadcast --verify
@@ -27,9 +28,15 @@ contract Deploy is Script {
         address wrappedPunksV1 = vm.envAddress("WRAPPED_PUNKS_V1");
         address punksV2 = vm.envAddress("PUNKS_V2");
         address wrappedMarketplace = vm.envOr("WRAPPED_PUNKS_MARKETPLACE", address(0));
-        address owner = vm.envOr("OWNER", msg.sender);
+        uint256 deployerKey = vm.envOr("PRIVATE_KEY", uint256(0));
+        address deployer = deployerKey != 0 ? vm.addr(deployerKey) : msg.sender;
+        address owner = vm.envOr("OWNER", deployer);
 
-        vm.startBroadcast();
+        if (deployerKey != 0) {
+            vm.startBroadcast(deployerKey);
+        } else {
+            vm.startBroadcast();
+        }
 
         if (wrappedMarketplace == address(0)) {
             require(block.chainid != 1, "WRAPPED_PUNKS_MARKETPLACE is required on mainnet");

@@ -56,9 +56,11 @@ price. The mock in `test/mocks/MockPunksV1.sol` reproduces the bug so the tests 
   the `buy` transaction.
 - **No prices in the contract.** Prices are the offers on the original contracts, read at listing time and at
   purchase time. Nothing to keep in sync.
-- **Owner = a pause switch, nothing else.** `pause()` stops new listings and purchases (sellers can always
-  `delist`). `renounceOwnership()` gives the switch up for good; it is refused while paused, so the contract can
-  never be frozen shut.
+- **Owner = a pause switch, nothing else — held by the community.** `pause()` stops new listings and
+  purchases (sellers can always `delist`). The contract is meant to be owned by a community **Gnosis Safe**:
+  ownership moves in two steps (`transferOwnership` by the current owner, then `acceptOwnership` by the Safe —
+  `script/TransferOwnership.s.sol` does step 1), so a mistyped address cannot strand it. The Safe may also
+  `renounceOwnership()` for good; that is refused while paused, so the contract can never be frozen shut.
 - **Reserved offers.** Both offers must be reserved to the contract (`onlySellTo == pair`) — otherwise anyone
   could buy one punk alone on the original contract and break the pair.
 
@@ -118,8 +120,8 @@ Things we would like a second pair of eyes on:
    Ownership is re-checked at purchase, and the original contracts drop an offer when the punk moves.
 4. **Reentrancy**: `buy` is `nonReentrant` and deletes the listing before any external call; `list` and `delist`
    make no external calls after their writes.
-5. **What the owner can do**: pause only. Is a pause switch worth keeping at all, or should the contract ship
-   without an owner?
+5. **What the owner can do**: pause only, from a community Gnosis Safe (two-step transfer). Is a pause switch
+   the right amount of power for the Safe — too much, or too little (e.g. no way to disable a punk)?
 
 ## License
 

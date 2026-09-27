@@ -2,6 +2,7 @@
 pragma solidity 0.8.23;
 
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {Ownable2Step} from "@openzeppelin/contracts/access/Ownable2Step.sol";
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -30,10 +31,12 @@ import {IWrappedPunksV1} from "./interfaces/IWrappedPunksV1.sol";
  *        seller. The V1 contract still records the sale at the real price.
  *      - Wrapped V1: the wrapped-punks marketplace pays the seller directly.
  *
- *      Immutable: no proxy, no upgrade path. The owner can only pause new listings and purchases (sellers
- *      can always delist) and may renounce ownership, which freezes the contract open forever.
+ *      Immutable: no proxy, no upgrade path. The owner — meant to be a community-held Gnosis Safe — can
+ *      only pause new listings and purchases (sellers can always delist). Ownership moves in two steps
+ *      (the new owner must accept it, so a mistyped address cannot strand the contract) and may be
+ *      renounced, which freezes the contract open forever.
  */
-contract PunkPairTrading is Ownable, Pausable, ReentrancyGuard, IERC721Receiver {
+contract PunkPairTrading is Ownable2Step, Pausable, ReentrancyGuard, IERC721Receiver {
     /*//////////////////////////////////////////////////////////////
                                  TYPES
     //////////////////////////////////////////////////////////////*/
@@ -246,7 +249,8 @@ contract PunkPairTrading is Ownable, Pausable, ReentrancyGuard, IERC721Receiver 
     }
 
     /// @notice Gives up the pause switch for good. Refused while paused, so the contract can never be
-    ///         frozen shut by mistake.
+    ///         frozen shut by mistake. Ownership transfers go through `transferOwnership` +
+    ///         `acceptOwnership` (Ownable2Step).
     function renounceOwnership() public override onlyOwner {
         if (paused()) revert CannotRenounceWhilePaused();
         super.renounceOwnership();

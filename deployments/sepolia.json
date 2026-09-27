@@ -2,8 +2,12 @@
   "chainId": 11155111,
   "network": "sepolia",
   "deployedAt": "2026-09-27",
-  "PunkPairTrading": "0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c",
+  "PunkPairTrading": "0x709B21ecD161DbF745D8721aD3192E843605eb67",
   "owner": "0x67B1eBaF847BE5050272b174be2713D81b08dCF4",
+  "pendingOwner": null,
+  "superseded": {
+    "0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c": "first deployment, before the switch to two-step ownership (Ownable2Step); unused"
+  },
   "dependencies": {
     "PUNKS_V1": "0xE89adD4a3e5fe3a7F509f4b58e985C6fc4002C9a",
     "WRAPPED_PUNKS_V1": "0x8f7D8787b94505336aDAd20827283d0F5c22A42F",

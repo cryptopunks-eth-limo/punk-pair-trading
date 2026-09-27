@@ -105,7 +105,7 @@ deployed alongside.
 
 | Network | PunkPairTrading | Notes |
 | --- | --- | --- |
-| Sepolia | [`0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c`](https://sepolia.etherscan.io/address/0x39a0F7c3F041724c1F11C7Fc78ebD882dDc6b88c) | against mocks of the original contracts (the V1 mock reproduces the proceeds bug) — see [`deployments/sepolia.json`](deployments/sepolia.json) |
+| Sepolia | [`0x709B21ecD161DbF745D8721aD3192E843605eb67`](https://sepolia.etherscan.io/address/0x709B21ecD161DbF745D8721aD3192E843605eb67) | against mocks of the original contracts (the V1 mock reproduces the proceeds bug) — see [`deployments/sepolia.json`](deployments/sepolia.json) |
 | Mainnet | — | not before the review |
 
 ## Review focus
